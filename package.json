@@ -1,0 +1,22 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "Node.js file manager",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:guest" : "node src/index.js --username=guest"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aldar0K/node-file-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aldar0K/node-file-manager/issues"
+  },
+  "homepage": "https://github.com/Aldar0K/node-file-manager#readme"
+}
