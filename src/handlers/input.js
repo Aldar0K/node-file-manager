@@ -6,6 +6,7 @@ import {
   handleUp,
   handleLs,
   handleCat,
+  handleAdd,
 } from './index.js';
 
 export const handleInput = async (readline, input) => {
@@ -31,6 +32,9 @@ export const handleInput = async (readline, input) => {
         break;
       case 'cat':
         await handleCat(payload);
+        break;
+      case 'add':
+        await handleAdd(payload);
         break;
       case 'console':
         console.log('Command console!');
