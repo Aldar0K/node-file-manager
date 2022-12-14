@@ -1,7 +1,12 @@
 import { INVALID_INPUT_ERROR } from '../constants/index.js';
 import { printCurrentDirectory } from '../utils/index.js';
 
-import { handleCd, handleUp, handleLs } from './index.js';
+import {
+  handleCd,
+  handleUp,
+  handleLs,
+  handleCat,
+} from './index.js';
 
 export const handleInput = async (readline, input) => {
   const [command, ...payload] = input.trim().split(' ');
@@ -23,6 +28,9 @@ export const handleInput = async (readline, input) => {
         break;
       case 'ls':
         await handleLs();
+        break;
+      case 'cat':
+        await handleCat(payload);
         break;
       case 'console':
         console.log('Command console!');
