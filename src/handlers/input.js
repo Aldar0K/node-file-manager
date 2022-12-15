@@ -8,6 +8,7 @@ import {
   handleCat,
   handleAdd,
   handleRn,
+  handleCp,
 } from './index.js';
 
 export const handleInput = async (readline, input) => {
@@ -40,6 +41,9 @@ export const handleInput = async (readline, input) => {
       case 'rn':
         await handleRn(payload);
         break;
+      case 'cp':
+        await handleCp(payload);
+        break;
       case 'console':
         console.log('Command console!');
         break;
@@ -55,7 +59,6 @@ export const handleInput = async (readline, input) => {
   } catch (error) {
     console.log(error.message);
   } finally {
-    // TODO should be printed AFTER each end of input/operation.
     if (!isExit) printCurrentDirectory();
   }
 }
