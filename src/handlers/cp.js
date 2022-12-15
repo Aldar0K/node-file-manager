@@ -1,6 +1,7 @@
 import { cwd } from 'process';
-import { copyFile } from 'fs/promises';
+import { createReadStream, createWriteStream } from 'fs';
 import { resolve, basename } from 'path';
+import { pipeline } from 'stream/promises';
 
 import { OPERATION_FAILED_ERROR, INVALID_INPUT_ERROR } from '../constants/index.js';
 import { removeQuotes } from '../utils/index.js';
@@ -31,20 +32,20 @@ export const handleCp = async (payload) => {
 
     let oldFilePath = rawFilePath.match(/['|"]/) ? removeQuotes(rawFilePath) : rawFilePath;
     oldFilePath = resolve(currentDirectory, oldFilePath);
-    // console.log(oldFilePath);
     
     let newDirectoryPath = rawNewDirectoryPath.match(/['|"]/)
       ? removeQuotes(rawNewDirectoryPath)
       : rawNewDirectoryPath;
     newDirectoryPath = resolve(currentDirectory, newDirectoryPath);
-    // console.log(newDirectoryPath);
     
     const fileName = basename(oldFilePath);
     const newFilePath = resolve(newDirectoryPath, fileName);
-    // console.log(newFilePath);
 
-    await copyFile(oldFilePath, newFilePath);
-    // console.log('File copied!');
+    const readStream = createReadStream(oldFilePath);
+    const writeStream = createWriteStream(newFilePath);
+    await pipeline(readStream, writeStream);
+
+    console.log('File copied!');
   } catch (_error) {
     throw new Error(OPERATION_FAILED_ERROR);
   }
