@@ -9,6 +9,8 @@ import {
   handleAdd,
   handleRn,
   handleCp,
+  handleMv,
+  handleRm,
 } from './index.js';
 
 export const handleInput = async (readline, input) => {
@@ -44,14 +46,11 @@ export const handleInput = async (readline, input) => {
       case 'cp':
         await handleCp(payload);
         break;
-      case 'console':
-        console.log('Command console!');
+      case 'mv':
+        await handleMv(payload);
         break;
-      case 'console-timeout':
-        const promise = new Promise(resolve => {
-          setTimeout(() => resolve(console.log('Command console timeout!')), 500);
-        });
-        await promise;
+      case 'rm':
+        await handleRm(payload);
         break;
       default:
         throw new Error(INVALID_INPUT_ERROR);
