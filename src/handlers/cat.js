@@ -1,5 +1,4 @@
-import { createReadStream, createWriteStream } from 'fs';
-import { readdir } from 'fs/promises';
+import { createReadStream } from 'fs';
 import { Writable } from 'stream';
 import { pipeline } from 'stream/promises';
 
@@ -7,14 +6,12 @@ import { OPERATION_FAILED_ERROR, INVALID_INPUT_ERROR } from '../constants/index.
 import { removeQuotes } from '../utils/index.js';
 
 export const handleCat = async (payload) => {
-  // console.log(payload);
-
   if (!payload.length) throw new Error(INVALID_INPUT_ERROR);
   
-  const rawPath = payload.join(' ');
-  const path = rawPath.match(/['|"]/) ? removeQuotes(rawPath) : rawPath;
-
   try {
+    const rawPath = payload.join(' ');
+    const path = rawPath.match(/['|"]/) ? removeQuotes(rawPath) : rawPath;
+
     const readStream = createReadStream(path, { encoding: 'utf-8' });
     const writable = new Writable({
       decodeStrings: false,
