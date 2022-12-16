@@ -12,6 +12,7 @@ import {
   handleMv,
   handleRm,
   handleOs,
+  handleHash,
 } from './index.js';
 
 export const handleInput = async (readline, input) => {
@@ -56,6 +57,9 @@ export const handleInput = async (readline, input) => {
       case 'os':
         await handleOs(payload);
         break;
+      case 'hash':
+        await handleHash(payload);
+        break
       default:
         throw new Error(INVALID_INPUT_ERROR);
     }
