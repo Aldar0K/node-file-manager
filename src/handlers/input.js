@@ -13,6 +13,8 @@ import {
   handleRm,
   handleOs,
   handleHash,
+  handleCompress,
+  handleDecompress
 } from './index.js';
 
 export const handleInput = async (readline, input) => {
@@ -59,7 +61,13 @@ export const handleInput = async (readline, input) => {
         break;
       case 'hash':
         await handleHash(payload);
-        break
+        break;
+      case 'compress':
+        await handleCompress(payload);
+        break;
+      case 'decompress':
+        await handleDecompress(payload);
+        break;
       default:
         throw new Error(INVALID_INPUT_ERROR);
     }
