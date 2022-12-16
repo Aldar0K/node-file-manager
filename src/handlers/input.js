@@ -11,6 +11,7 @@ import {
   handleCp,
   handleMv,
   handleRm,
+  handleOs,
 } from './index.js';
 
 export const handleInput = async (readline, input) => {
@@ -51,6 +52,9 @@ export const handleInput = async (readline, input) => {
         break;
       case 'rm':
         await handleRm(payload);
+        break;
+      case 'os':
+        await handleOs(payload);
         break;
       default:
         throw new Error(INVALID_INPUT_ERROR);
