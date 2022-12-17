@@ -3,27 +3,33 @@ import { INVALID_INPUT_ERROR } from '../constants/index.js';
 
 const require = createRequire(import.meta.url);
 
-export const handleOs = async ([ flag ]) => {
-  if (!flag) throw new Error(INVALID_INPUT_ERROR);
+export const handleOs = async (payload) => {
+  if (!payload.length) throw new Error(INVALID_INPUT_ERROR);
+  
+  try {
+    const [ flag ] = payload;
 
-  switch (flag) {
-    case '--EOL':
-      await printEOL();
-      break;
-    case '--cpus':
-      await printCpus();
-      break;
-    case '--homedir':
-      await printHomedir();
-      break;
-    case '--username':
-      await printUsername();
-      break;
-    case '--architecture':
-      await printArchitecture();
-      break;
-    default:
-      throw new Error(INVALID_INPUT_ERROR);
+    switch (flag) {
+      case '--EOL':
+        await printEOL();
+        break;
+      case '--cpus':
+        await printCpus();
+        break;
+      case '--homedir':
+        await printHomedir();
+        break;
+      case '--username':
+        await printUsername();
+        break;
+      case '--architecture':
+        await printArchitecture();
+        break;
+      default:
+        throw new Error(INVALID_INPUT_ERROR);
+    }
+  } catch (_error) {
+    throw new Error(OPERATION_FAILED_ERROR);
   }
 }
 

@@ -30,12 +30,10 @@ export const handleRn = async (payload) => {
     let oldPath = rawOldPath.match(/['|"]/) ? removeQuotes(rawOldPath) : rawOldPath;
     const currentDirectory = cwd();
     oldPath = resolve(currentDirectory, oldPath);
-    // console.log(oldPath);
     
     const oldDirectoryPath = dirname(oldPath);
     let newFileName = rawNewFileName.match(/['|"]/) ? removeQuotes(rawNewFileName) : rawNewFileName;
     const newPath = resolve(oldDirectoryPath, newFileName);
-    // console.log(newPath);
 
     await rename(oldPath, newPath);
     console.log('File renamed!');

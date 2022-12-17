@@ -6,10 +6,10 @@ import { removeQuotes } from '../utils/index.js';
 export const handleRm = async (payload) => {
   if (!payload.length) throw new Error(INVALID_INPUT_ERROR);
 
-  const rawFilePath = payload.join(' ');
-  const filePath = rawFilePath.match(/['|"]/) ? removeQuotes(rawFilePath) : rawFilePath;
-
   try {
+    const rawFilePath = payload.join(' ');
+    const filePath = rawFilePath.match(/['|"]/) ? removeQuotes(rawFilePath) : rawFilePath;
+
     await rm(filePath);
 
     console.log('File removed!');

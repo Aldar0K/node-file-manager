@@ -26,13 +26,13 @@ export const handleLs = async () => {
       }
     });
 
-    const direcitories = processedDirectoryContent.filter(({Type}) => Type === 'direcitory');
+    const direcitories = processedDirectoryContent.filter(({ Type }) => Type === 'direcitory');
     const sortedDirecitories = direcitories.sort();
     
-    const files = processedDirectoryContent.filter(({Type}) => Type === 'file');
+    const files = processedDirectoryContent.filter(({ Type }) => Type === 'file');
     const sortedFiles = files.sort();
 
-    const symbolicLinks = processedDirectoryContent.filter(({Type}) => Type === 'symbolic link');
+    const symbolicLinks = processedDirectoryContent.filter(({ Type }) => Type === 'symbolic link');
     const sortedSymbolicLinks = symbolicLinks.sort();
 
     const data = [...sortedDirecitories, ...sortedFiles, ...sortedSymbolicLinks];

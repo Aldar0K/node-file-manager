@@ -21,8 +21,6 @@ export const handleInput = async (readline, input) => {
   const [command, ...payload] = input.trim().split(' ');
   let isExit = false;
 
-  // TODO validate args (payload) and throw 'Invalid input' error here?
-
   try {
     switch (command) {
       case '.exit':
